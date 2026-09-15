@@ -17,6 +17,17 @@ So that's what we build: a complete, runnable simulation (load a world, step it 
 ## Build
 
 MuJoCo splits the world into two objects, and the split is the single most important idea in this chapter. **mjModel** is everything that never changes while the simulation runs: geometry, masses, joint layout, actuator gearing. It's compiled once from a description file and then treated as read-only. **mjData** is everything that does change: positions, velocities, contact forces, the current time. `mj_step` reads the model, mutates the data, and that's the whole game. One consequence you'll cash in later: a single model can drive many independent datas. Hold that thought until chapter 2.3, where it becomes 4096 robots training at once.
+<!-- model = mujoco.MjModel.from_xml_path(...)
+data = mujoco.MjData(model)
+
+for step in range(300):
+    if step < 50:
+        data.xfrc_applied[box_id, :3] = [0, 9.8, 0]
+    else:
+        data.xfrc_applied[box_id, :3] = [0, 0, 0]
+
+    mujoco.mj_step(model, data)
+    record(data) -->
 
 ### Setup
 
