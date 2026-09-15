@@ -55,7 +55,7 @@ SCENE_XML = """
     <geom name="floor" type="plane" size="2 2 0.1" rgba="0.85 0.85 0.85 1"/>
     <body name="box" pos="0.4 0 0.05">
       <freejoint/>
-      <geom name="box_geom" type="box" size="0.05 0.05 0.05" mass="0.5" rgba="0.85 0.3 0.25 1"/>
+      <geom name="box_geom" type="box" size="0.05 0.05 0.05" mass="2.0" rgba="0.85 0.3 0.25 1"/>
     </body>
     <body name="pusher" pos="0 0 0.05">
       <joint name="pusher_slide" type="slide" axis="1 0 0" damping="4"/>
