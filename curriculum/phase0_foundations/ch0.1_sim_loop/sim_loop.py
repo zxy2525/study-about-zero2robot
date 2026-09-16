@@ -50,12 +50,13 @@ rng = np.random.default_rng(args.seed)  # PCG64 — the only source of randomnes
 # pusher that can ONLY slide along x, driven by a single motor.
 SCENE_XML = """
 <mujoco model="pusher_scene">
+  <option friction="0.1 0.1 0.2"/>
   <worldbody>
     <light pos="0 0 3" dir="0 0 -1"/>
     <geom name="floor" type="plane" size="2 2 0.1" rgba="0.85 0.85 0.85 1"/>
     <body name="box" pos="0.4 0 0.05">
       <freejoint/>
-      <geom name="box_geom" type="box" size="0.05 0.05 0.05" mass="2.0" rgba="0.85 0.3 0.25 1"/>
+      <geom name="box_geom" type="box" size="0.05 0.05 0.05" mass="0.2" rgba="0.85 0.3 0.25 1"/>
     </body>
     <body name="pusher" pos="0 0 0.05">
       <joint name="pusher_slide" type="slide" axis="1 0 0" damping="4"/>
@@ -68,6 +69,7 @@ SCENE_XML = """
 </mujoco>
 """
 
+# <option friction="0.2 0.1 0.1"/> 全局摩擦：滑动 0.2，扭转 0.1，滚动 0.1
 # mjModel: the compiled world — geometry, masses, joints, actuator gearing.
 # Nothing in it changes while the simulation steps. Build it once.
 model = mujoco.MjModel.from_xml_string(SCENE_XML)
